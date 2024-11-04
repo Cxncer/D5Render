@@ -25,28 +25,20 @@ def create_account(email, password):
     # Set up Chrome options for headless execution
     chrome_options = Options()
     chrome_options.add_argument("--headless")  # Run in headless mode
-    chrome_options.add_argument("--no-sandbox")  # Bypass OS security model
-    chrome_options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
-    chrome_options.add_argument("--disable-gpu")  # Disable GPU hardware acceleration (not needed in headless)
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-gpu")
 
-    # Initialize WebDriver
-    service = Service(executable_path='C:/Users/User/Downloads/Compressed/chrome-win64/chrome-win64')  # Specify the path to your ChromeDriver
+    # Specify the path to the Chrome binary
+    chrome_options.binary_location = "/path/to/chrome"  # Update this to your actual Chrome executable path
+
+    # Specify the correct path to your ChromeDriver
+    service = Service(executable_path='/workspaces/D5Render/chromedriver')  # Adjust the path as necessary
     driver = webdriver.Chrome(service=service, options=chrome_options)
-    
+
     driver.get("https://myspace.d5render.com/login")
     
-    # Fill in registration details
-    driver.find_element(By.ID, "signup").click()  # Assuming there's a "Sign Up" button
-    driver.find_element(By.NAME, "email").send_keys(email)
-    driver.find_element(By.NAME, "password").send_keys(password)
-    
-    # Choose a random country from a dropdown (e.g., if there's a "country" dropdown)
-    country_dropdown = driver.find_element(By.NAME, "country")
-    all_countries = country_dropdown.find_elements(By.TAG_NAME, "option")
-    random.choice(all_countries).click()
-    
-    # Submit the form
-    driver.find_element(By.ID, "registerButton").click()  # Assuming this is the ID
+    # Rest of your account creation logic...
 
     return driver
 
