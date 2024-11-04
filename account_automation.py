@@ -30,7 +30,7 @@ def create_account(email, password):
     chrome_options.add_argument("--disable-gpu")
 
     # Specify the path to the Chrome binary
-    chrome_options.binary_location = "/C:\Program Files\Google\Chrome\Application\chrome.exe"  # Update this to your actual Chrome executable path
+    chrome_options.binary_location = "C:\Program Files\Google\Chrome\Application\chrome.exe"  # Update this to your actual Chrome executable path
 
     # Specify the correct path to your ChromeDriver
     service = Service(executable_path='/workspaces/D5Render/chromedriver')  # Adjust the path as necessary
