@@ -5,6 +5,8 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 
 # 1. Generate a temporary email using Temp-Mail API
 def create_temp_email():
@@ -20,8 +22,17 @@ def generate_random_password(length=10):
 
 # 3. Automate the account creation process
 def create_account(email, password):
+    # Set up Chrome options for headless execution
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")  # Run in headless mode
+    chrome_options.add_argument("--no-sandbox")  # Bypass OS security model
+    chrome_options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
+    chrome_options.add_argument("--disable-gpu")  # Disable GPU hardware acceleration (not needed in headless)
+
     # Initialize WebDriver
-    driver = webdriver.Chrome()  # or Firefox(), depending on your browser
+    service = Service(executable_path='/path/to/chromedriver')  # Specify the path to your ChromeDriver
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    
     driver.get("https://myspace.d5render.com/login")
     
     # Fill in registration details
