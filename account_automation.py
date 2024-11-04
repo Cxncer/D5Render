@@ -30,7 +30,7 @@ def create_account(email, password):
     chrome_options.add_argument("--disable-gpu")  # Disable GPU hardware acceleration (not needed in headless)
 
     # Initialize WebDriver
-    service = Service(executable_path='/path/to/chromedriver')  # Specify the path to your ChromeDriver
+    service = Service(executable_path='C:/Users/User/Downloads/Compressed/chrome-win64/chrome-win64')  # Specify the path to your ChromeDriver
     driver = webdriver.Chrome(service=service, options=chrome_options)
     
     driver.get("https://myspace.d5render.com/login")
