@@ -33,7 +33,7 @@ def create_account(email, password):
     chrome_options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"  # Update this to your actual Chrome executable path
 
     # Specify the correct path to your ChromeDriver
-    service = Service(executable_path= r"C:\Users\mirac\Downloads\Compressed\chrome-win64\chrome-win64")  # Adjust the path as necessary
+    service = Service(executable_path="./chromedriver")  # Ensure 'chromedriver' is in the workspace directory
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
     driver.get("https://myspace.d5render.com/login")
