@@ -4,7 +4,6 @@ import random
 import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 
@@ -29,11 +28,11 @@ def create_account(email, password):
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--disable-gpu")
 
-    # Specify the path to the Chrome binary
-    chrome_options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"  # Update this to your actual Chrome executable path
+    # Set the path to the Chromium binary (if necessary, change this for Codespaces environment)
+    chrome_options.binary_location = "/usr/bin/chromium"  # Common location for Chromium in Linux environments
 
-    # Specify the correct path to your ChromeDriver
-    service = Service(executable_path="./chromedriver")  # Ensure 'chromedriver' is in the workspace directory
+    # Specify the path to your Chromedriver (make sure this path matches where chromedriver is installed)
+    service = Service(executable_path="/workspaces/D5Render/chromedriver-win64/chromedriver")  # Update to correct path if necessary
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
     driver.get("https://myspace.d5render.com/login")
