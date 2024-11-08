@@ -27,12 +27,14 @@ def create_account(email, password):
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--remote-debugging-port=9222")  # Required for DevToolsActivePort error
+    chrome_options.add_argument("--disable-software-rasterizer")
 
-    # Set the path to the Chromium binary (if necessary, change this for Codespaces environment)
-    chrome_options.binary_location = "/usr/bin/chromium"  # Common location for Chromium in Linux environments
+    # Specify the path to the Chrome/Chromium binary
+    chrome_options.binary_location = "/usr/bin/chromium-browser"  # Path for Chromium
 
-    # Specify the path to your Chromedriver (make sure this path matches where chromedriver is installed)
-    service = Service(executable_path="/workspaces/D5Render/chromedriver-win64/chromedriver")  # Update to correct path if necessary
+    # Specify the correct path to your Chromedriver (Linux version)
+    service = Service(executable_path="/workspaces/D5Render/chromedriver/chromedriver")
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
     driver.get("https://myspace.d5render.com/login")
